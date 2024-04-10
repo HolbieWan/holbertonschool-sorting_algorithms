@@ -2,62 +2,57 @@
 
 /**
 * swap_node - function that swaps two nodes of a doubly linked list
-* @list: pointer to the pointer of the head of th list
-* @b: pointer to the first node to swap (ie 'previous')
-* @j: pointer to the second node to swap (ie 'current')
+*
+* @list: pointer to the pointer of the head of the list
+* @node: pointer to the node to swap
+*
 * Return: void
 */
-void swap_node(listint_t *b, listint_t *c)
+void swap_node(listint_t **list, listint_t *node)
 {
-	listint_t *a = b->prev;
+	/*libère le node*/
+	node->prev->next = node->next;
+	if (node->next != NULL)
+		node->next->prev = node->prev;
 
-	if (b == NULL || c == NULL)
-		return;
+	/*insère node devant le previous*/
+	node->next = node->prev;
+	node->prev = node->next->prev;
+	node->next->prev = node;
 
-	while (a != NULL && c->next != NULL)
-	{
-		a->next = c;
-		b->prev = c;
-		b->next = c->next;
-		c->prev = a;
-		c->next = b;
-		b->next->prev = b;
-	}
+	/*si pas de neud avant il devient le head*/
+	if (node->prev == NULL)
+		*list = node;
+	else
+		node->prev->next = node;
 }
+
 
 /**
 * insertion_sort_list - function that sorts a doubly linked list
-*			of integers in ascending order using the Insertion sort algorithm
+* of integers in ascending order using the Insertion sort algorithm
+*
 * @list: pointer to the pointer of the head of the doubly linked list
+*
 * Return: void
 */
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *current;
-	listint_t *previous;
+	listint_t *current = *list;
 
-	if (list == NULL && *list == NULL)
+	if (list == NULL || *list == NULL || (*list)->next == NULL)
 		return;
 
-	while (*list != NULL)
-	{
-		current = (*list)->next;
-		previous = current->prev;
+	current = current->next;
 
-		if (current->n < previous->n)
+	while (current->next != NULL)
+	{
+		current = current->next;
+
+		while (current->prev && current->prev->n > current->n)
 		{
-			swap_node(previous, current);
+			swap_node(list, current);
 			print_list(*list);
 		}
 	}
-
-
-	/*for (i = 0 ; list != NULL && *list != NULL && **list->next != NULL ; i++)
-	{
-		if (**list->n < **list->prev->n)
-		{
-			swap_node(**list, **list->prev);
-			print_list(*list);
-		}
-	}*/
 }
