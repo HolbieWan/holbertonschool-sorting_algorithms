@@ -1,22 +1,5 @@
 #include "sort.h"
 
-/**
- * swap_array_i - functions that swaps to int in an array
- *
- * @array: pointer to the array of int
- * @i: the first value to swap
- * @j: the second value to swap
- *
- * Return: void
- */
-void swap_array_i(int *array, int i, int j)
-{
-	int temp;
-
-	temp = array[i];
-	array[i] = array[j];
-	array[j] = temp;
-}
 
 /**
  * insertion_sort_list - function that sorts a doubly linked list of
@@ -30,13 +13,16 @@ void insertion_sort_list(listint_t **list)
 {
 	{
     // zero or one element in list
-    if (pList == NULL || pList->pNext == NULL)
-        return pList;
+    if (list == NULL || list->next == NULL)
+        return list;
     // head is the first element of resulting sorted list
-    struct LIST * head = NULL;
-    while (pList != NULL) {
-        struct LIST * current = pList;
-        pList = pList->pNext;
+    struct list * head = NULL;
+	struct list * current = list;
+
+    while (list != NULL)
+	{
+        list = list->next;
+
         if (head == NULL || current->iValue < head->iValue) {
             // insert into the head of the sorted list
             // or as the first element into an empty sorted list
