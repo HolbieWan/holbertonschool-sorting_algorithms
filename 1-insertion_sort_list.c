@@ -34,9 +34,16 @@ void insertion_sort_list(listint_t **list)
 	if (list == NULL && *list == NULL && **list == NULL)
 		return;
 
-	current = (*list)->next;
+	while (**list != NULL)
+	{
+		current = (*list)->next;
+		previous = current->prev;
+		if (current->n < previous->n)
+		{
+			swap_node(current, previous)
+		}
+	}
 
-	while (previous != NULL && previous->next )
 
 	/*for (i = 0 ; list != NULL && *list != NULL && **list->next != NULL ; i++)
 	{
