@@ -32,8 +32,6 @@ void bubble_sort(int *array, size_t size)
 	unsigned long int i, j = 0;
 	unsigned long int swap_done;
 
-	printf("\n");
-
 	for (i = 0; i < (unsigned long int) size - 1; i++)
 	{
 		swap_done = 0;
