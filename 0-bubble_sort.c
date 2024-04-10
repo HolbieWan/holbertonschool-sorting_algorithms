@@ -45,7 +45,6 @@ void bubble_sort(int *array, size_t size)
 				swap_array_i(array, j, j + 1);
 				swap_done = 1;
 				print_array(array, size);
-				printf("\n");
 			}
 		}
 		if (swap_done == 0)
