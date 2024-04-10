@@ -10,17 +10,12 @@
 */
 void swap_node(listint_t **list, listint_t *node)
 {
-	/*libère le node*/
 	node->prev->next = node->next;
 	if (node->next != NULL)
 		node->next->prev = node->prev;
-
-	/*insère node devant le previous*/
 	node->next = node->prev;
 	node->prev = node->next->prev;
 	node->next->prev = node;
-
-	/*si pas de neud avant il devient le head*/
 	if (node->prev == NULL)
 		*list = node;
 	else
