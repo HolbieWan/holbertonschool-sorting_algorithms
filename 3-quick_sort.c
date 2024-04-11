@@ -21,7 +21,7 @@ void quick_sort(int *array, size_t size)
 		if (array[i] > array[pivot])
 			elem_to_swap = i;
 
-		for (j = i + 1; j <= pivot; j++)
+		for (j = i; j <= pivot; j++)
 		{
 			if (array[j] <= array[pivot] && array[pivot] < array[i])
 			{
@@ -46,7 +46,7 @@ void quick_sort(int *array, size_t size)
 		if (array[i] > array[pivot])
 			elem_to_swap = i;
 
-		for (j = i + 1; j <= pivot; j++)
+		for (j = i; j <= pivot; j++)
 		{
 			if (array[j] <= array[pivot] && array[pivot] < array[i])
 			{
