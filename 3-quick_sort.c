@@ -9,13 +9,17 @@ int lomutoPartition(int *array, int low, int high, size_t size);
 * @b : second int
 * Return: void
 */
-void swap(int *a, int *b)
+void swap(int *a, int *b, int *array, size_t size)
 {
 	int temp;
 
-	temp = *a;
-	*a = *b;
-	*b = temp;
+	if (a != b)
+	{
+		temp = *a;
+		*a = *b;
+		*b = temp;
+		print_array(array, size);
+	}
 }
 
 /**
@@ -64,13 +68,12 @@ int lomutoPartition(int *array, int low, int high, size_t size)
 			i++;
 			if (i != j)
 			{
-				swap(&array[i], &array[j]);
-				print_array(array, size);
+				swap(&array[i], &array[j], array, size);
 			}
 		}
 	}
-	swap(&array[i + 1], &array[high]);
-	print_array(array, size);
+	swap(&array[i + 1], &array[high], array, size);
+
 	return (i + 1);
 }
 
