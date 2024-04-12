@@ -4,18 +4,19 @@ void rec_quicksort(int *array, int low, int high, size_t size);
 int lomutoPartition(int *array, int low, int high, size_t size);
 
 /**
-* swap - helper function that swaps the values of two given integers
+* swap_print - help function that swaps and prints the values of two given ints
 * @a : first int
 * @b : second int
+* @array: pointer to the array to print
+* @size: size of the array to print
 * Return: void
 */
-void swap(int *a, int *b, int *array, size_t size)
+void swap_print(int *a, int *b, int *array, size_t size)
 {
-	int temp;
 
-	if (a != b)
+	if (*a != *b)
 	{
-		temp = *a;
+		int temp = *a;
 		*a = *b;
 		*b = temp;
 		print_array(array, size);
@@ -63,16 +64,16 @@ int lomutoPartition(int *array, int low, int high, size_t size)
 
 	for (j = low ; j < high ; j++)
 	{
-		if (pivot > array[j])
+		if (array[j] < pivot)
 		{
 			i++;
 			if (i != j)
 			{
-				swap(&array[i], &array[j], array, size);
+				swap_print(&array[i], &array[j], array, size);
 			}
 		}
 	}
-	swap(&array[i + 1], &array[high], array, size);
+	swap_print(&array[i + 1], &array[high], array, size);
 
 	return (i + 1);
 }
